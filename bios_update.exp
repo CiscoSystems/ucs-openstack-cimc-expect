@@ -91,6 +91,19 @@ expect "Status: Done, OK" {
  }
 sleep 15
 }
+send "top\r"
+expect "# "
+send "scope chassis\r"
+expect "# "
+send "power on\r"
+expect "]"
+send "y\r"
+expect "# "
+send "top\r"
+expect "# "
+sleep 30
+send "scope bios\r"
+expect "# "
 send -- "show detail\r"
 expect "# "
 send -- "exit\r"
