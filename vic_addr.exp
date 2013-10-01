@@ -46,11 +46,11 @@ set cimc_addr [lindex $argv 0]
 #set password [lindex $argv 2]
 set user "admin"
 set password "password"
-
+set prompt "($|#)"
 set timeout 60
 spawn $env(SHELL)
 match_max 100000
-expect "# "
+expect -re $prompt
 send -- "ssh $user@$cimc_addr\r"
 expect "(yes/no)? " {
   send "yes\r"
