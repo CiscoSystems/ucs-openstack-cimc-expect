@@ -48,6 +48,7 @@ set state [lindex $argv 1]
 set user "admin"
 set password "password"
 
+set prompt "($|#)"
 set timeout 60
 spawn $env(SHELL)
 match_max 100000
@@ -63,7 +64,7 @@ expect "(yes/no)? " {
 }
 
 
-expect "# "
+expect -re $prompt
 send -- "top\r"
 expect "# "
 send -- "scope chassis\r"
@@ -75,6 +76,6 @@ expect "# "
 send -- "top\r"
 expect "# "
 send -- "exit\r"
-expect "$ "
+expect -re $prompt
 send -- "exit\r"
 expect eof
